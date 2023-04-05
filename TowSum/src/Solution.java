@@ -1,21 +1,34 @@
-
+import java.util.*;
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        int[] list;
-        int a;
-        for(int i = 0; i<nums.size(); i++){
-            for(a = 1; i<nums.size(); a++){
-                if(nums[i] + nums[a] == target){
-                    list.add(mums[i]);
-                    list.add(nums[a]);
+
+        public int[] towSum(int[] A, int target){
+            int N = A.length;
+            int []out = new int[2];
+
+            Map<Integer, Integer> map = new HashMap<>();
+
+            for(int i=0; i<N; i++){
+                int b = target - A[i];
+
+                if(map.containsKey(b)){
+                    out[0] = Math.min(i, map.get(b));
+                    out[1] = Math.max(i, map.get(b));
+                    return out;
+                }else{
+                    map.put(A[i], i);
                 }
             }
-            a  = a +1;
+
+            return null;
         }
-        System.out.print(list);
-
-    }
-
-
 
 }
+
+class Run{
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        System.out.println( s.towSum([1,3,4,5],5));
+
+    }
+}
+
